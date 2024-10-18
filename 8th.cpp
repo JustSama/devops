@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n; 
+    int ratings[n]; 
+
+    
+    for (int i = 0; i < n; i++) {
+        cin >> ratings[i];
+    }
+
+    
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - 1 - i; j++) {
+            if (ratings[j] > ratings[j + 1]) {
+                
+                int temp = ratings[j];
+                ratings[j] = ratings[j + 1];
+                ratings[j + 1] = temp;
+            }
+        }
+    }
+
+    
+    int minDifference = 1e9;
+
+    for (int i = 0; i < n - 2; i++) {
+        int difference = ratings[i + 2] - ratings[i];
+        if (difference < minDifference) {
+            minDifference = difference;
+        }
+    }
+
+    
+    cout << minDifference << endl;
+
+    return 0;
+}
